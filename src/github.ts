@@ -1,5 +1,5 @@
 import { Octokit } from '@octokit/rest';
-import process from 'process';
+import 'dotenv/config';
 
 const token = process.env.GITHUB_TOKEN;
 
