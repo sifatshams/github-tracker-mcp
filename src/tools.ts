@@ -38,3 +38,43 @@ function safe<T>(fn: (args: T) => Promise<unknown>) {
     };
   }
 
+// formats github events into a short, readable string
+function summarizeEvent(e: any) {
+    const base = { type: e.type, repo: e.repo?.name, at: e.created_at };
+    const p = e.payload ?? {};
+    switch (e.type) {
+      case "PushEvent":
+        return {
+          ...base,
+          branch: p.ref?.replace("refs/heads/", ""),
+          commitCount: p.size ?? p.commits?.length ?? 0,
+          commits: p.commits?.map((c: any) => ({
+            sha: c.sha.slice(0, 7),
+            message: c.message.split("\n")[0],
+          })),
+        };
+      case "PullRequestEvent":
+        return {
+          ...base,
+          action: p.action,
+          number: p.pull_request?.number,
+          title: p.pull_request?.title,
+          merged: p.pull_request?.merged,
+        };
+      case "IssuesEvent":
+        return {
+          ...base,
+          action: p.action,
+          number: p.issue?.number,
+          title: p.issue?.title,
+        };
+      case "CreateEvent":
+      case "DeleteEvent":
+        return { ...base, refType: p.ref_type, ref: p.ref };
+      case "IssueCommentEvent":
+      case "PullRequestReviewEvent":
+        return { ...base, action: p.action };
+      default:
+        return base;
+    }
+  }
