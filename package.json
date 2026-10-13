@@ -15,7 +15,7 @@
   "type": "module",
   "files": ["build"],
   "scripts": {
-    "build": "tsc && chmod +x build/index.js",
+    "build": "tsc",
     "dev": "tsx src/index.ts",
     "start": "node build/index.js"
   },
