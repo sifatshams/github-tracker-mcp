@@ -1,0 +1,34 @@
+{
+  "name": "github-tracker-mcp",
+  "version": "1.0.0",
+  "description": "MCP server that lets Claude track your GitHub activity: commits, pushes, PRs, issues and repos",
+  "main": "build/index.js",
+  "bin": {
+    "github-tracker-mcp": "build/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "github",
+    "claude",
+    "model-context-protocol"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "tsc && chmod +x build/index.js",
+    "dev": "tsx src/index.ts",
+    "start": "node build/index.js"
+  },
+  "author": "Sifat Bin Anwar",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "@octokit/rest": "^22.0.1",
+    "dotenv": "^18.0.7",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
