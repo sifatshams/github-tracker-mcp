@@ -13,11 +13,13 @@
     "model-context-protocol"
   ],
   "type": "module",
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsx src/index.ts",
-    "start": "node build/index.js"
+    "dev": "tsx --env-file=.env src/index.ts",
+    "start": "node --env-file=.env build/index.js"
   },
   "author": "Sifat Bin Anwar",
   "license": "MIT",
