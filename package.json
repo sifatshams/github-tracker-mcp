@@ -18,8 +18,9 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsx --env-file=.env src/index.ts",
-    "start": "node --env-file=.env build/index.js"
+    "start": "node build/index.js",
+    "dev": "tsx src/index.ts",
+    "inspect": "npx @modelcontextprotocol/inspector node --env-file=.env build/index.js"
   },
   "author": "Sifat Bin Anwar",
   "license": "MIT",
