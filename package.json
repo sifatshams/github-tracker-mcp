@@ -13,6 +13,7 @@
     "model-context-protocol"
   ],
   "type": "module",
+  "files": ["build"],
   "scripts": {
     "build": "tsc && chmod +x build/index.js",
     "dev": "tsx src/index.ts",
