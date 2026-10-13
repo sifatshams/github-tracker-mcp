@@ -78,3 +78,30 @@ function summarizeEvent(e: any) {
         return base;
     }
   }
+
+  export function registerTools(server: McpServer) {
+    // profile
+    server.tool(
+      "get_profile",
+      "GitHub profile info: bio, followers, public repo count, etc.",
+      { username },
+      safe(async ({ username: u }) => {
+        const user = await resolveUser(u);
+        const { data } = await octokit.rest.users.getByUsername({
+          username: user,
+        });
+        return {
+          login: data.login,
+          name: data.name,
+          bio: data.bio,
+          company: data.company,
+          location: data.location,
+          followers: data.followers,
+          following: data.following,
+          publicRepos: data.public_repos,
+          createdAt: data.created_at,
+          url: data.html_url,
+        };
+      })
+    );
+}
